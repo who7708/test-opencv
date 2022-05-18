@@ -52,5 +52,5 @@ public class FaceDetectionImage {
 
         System.out.println("Image Processed");
     }
-}//原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：https://www.yiibai.com/opencv/opencv_face_detection_in_picture.html#article-start
+}
 

@@ -80,5 +80,5 @@ public class ReadingAsColored extends Application {
     public static void main(String args[]) throws Exception {
         launch(args);
     }
-}//原文出自【易百教程】，商业转载请联系作者获得授权，非商业请保留原文链接：https://www.yiibai.com/opencv/opencv_reading_image_as_bgr.html#article-start
+}
 
