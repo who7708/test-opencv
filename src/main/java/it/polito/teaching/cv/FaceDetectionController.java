@@ -13,6 +13,7 @@ import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
 
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -181,9 +182,9 @@ public class FaceDetectionController {
 
         // each rectangle in faces is a face: draw them!
         Rect[] facesArray = faces.toArray();
-		for (int i = 0; i < facesArray.length; i++) {
-			Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
-		}
+        for (int i = 0; i < facesArray.length; i++) {
+            Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
+        }
 
     }
 
@@ -194,9 +195,9 @@ public class FaceDetectionController {
     @FXML
     protected void haarSelected(Event event) {
         // check whether the lpb checkbox is selected and deselect it
-		if (this.lbpClassifier.isSelected()) {
-			this.lbpClassifier.setSelected(false);
-		}
+        if (this.lbpClassifier.isSelected()) {
+            this.lbpClassifier.setSelected(false);
+        }
 
         this.checkboxSelection("/haarcascades/haarcascade_frontalface_alt.xml");
     }
@@ -208,9 +209,9 @@ public class FaceDetectionController {
     @FXML
     protected void lbpSelected(Event event) {
         // check whether the haar checkbox is selected and deselect it
-		if (this.haarClassifier.isSelected()) {
-			this.haarClassifier.setSelected(false);
-		}
+        if (this.haarClassifier.isSelected()) {
+            this.haarClassifier.setSelected(false);
+        }
 
         this.checkboxSelection("/lbpcascades/lbpcascade_frontalface.xml");
     }
@@ -221,8 +222,10 @@ public class FaceDetectionController {
      * @param classifierPath the path on disk where a classifier trained set is located
      */
     private void checkboxSelection(String classifierPath) {
+        // 必须使用绝对路径
+        final String absolutePath = Objects.requireNonNull(this.getClass().getResource(classifierPath)).getPath();
         // load the classifier(s)
-        this.faceCascade.load(classifierPath);
+        this.faceCascade.load(absolutePath);
 
         // now the video capture can start
         this.cameraButton.setDisable(false);
